@@ -1,6 +1,6 @@
 # masynco
 
-> Massive async operations.
+> massive async operations
 
 Minimal async Map/Reduce helper with pluggable limit to handle massive amount of asynchronous operations.
 
