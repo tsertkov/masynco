@@ -4,8 +4,6 @@ import masynco from './masynco.js'
 // differnt types of map functions
 const mapSync = (v) => `processed-${v}`
 const mapAsync = async (v) => mapSync(v)
-const mapVSync = (v, k) => mapSync(v)
-const mapVAsync = async (v, k) => mapVSync(v, k)
 const mapKvSync = (v, k) => mapSync(`${v}-${k}`)
 const mapKvAsync = async (v, k) => mapKvSync(v, k)
 
@@ -23,23 +21,33 @@ const testData = {
   ],
   'handle multiple items array': [
     [ 'i1', 'i2' ],
-    [ mapSync, mapAsync, mapVSync, mapVAsync ],
+    [ mapSync, mapAsync ],
     [ 'processed-i1', 'processed-i2' ],
   ],
   'handle empty object': [
     {},
-    [ mapSync, mapAsync, mapVSync, mapVAsync ],
+    [ mapSync, mapAsync, mapKvSync, mapKvAsync ],
     {},
   ],
   'handle single item object': [
     { 'k1': 'v1' },
-    [ mapSync, mapAsync, mapVSync, mapVAsync ],
+    [ mapSync, mapAsync ],
     { 'k1': 'processed-v1' },
   ],
   'handle multiple items object': [
     { 'k1': 'v1', 'k2': 'v2' },
-    [ mapSync, mapAsync, mapVSync, mapVAsync ],
+    [ mapSync, mapAsync ],
     { 'k1': 'processed-v1', 'k2': 'processed-v2' },
+  ],
+  'handle single item object (keys)': [
+    { 'k1': 'v1' },
+    [ mapKvSync, mapKvAsync ],
+    { 'k1': 'processed-v1-k1' },
+  ],
+  'handle multiple items object (keys)': [
+    { 'k1': 'v1', 'k2': 'v2' },
+    [ mapKvSync, mapKvAsync ],
+    { 'k1': 'processed-v1-k1', 'k2': 'processed-v2-k2' },
   ],
 }
 
@@ -69,7 +77,7 @@ async function runTests (testData, limit = null) {
   console.log('\nExecuting masynco tests with limit:')
   await runTests(testData, limit)
 
-  const expectedLimitCallCount = 22
+  const expectedLimitCallCount = 18
   process.stdout.write(`Limit expected to be called ${expectedLimitCallCount} times ... `)
   assert.equal(limitCallCount, expectedLimitCallCount)
   process.stdout.write('OK\n')
