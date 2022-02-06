@@ -1,8 +1,12 @@
 {
   "name": "masynco",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "massive async operations",
-  "keywords": [ "async", "map", "reduce" ],
+  "keywords": [
+    "async",
+    "map",
+    "reduce"
+  ],
   "license": "MIT",
   "repository": "tsertkov/masynco",
   "type": "module",
