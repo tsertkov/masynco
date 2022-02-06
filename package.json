@@ -1,0 +1,12 @@
+{
+  "name": "masynco",
+  "version": "0.0.1",
+  "description": "massive async operations",
+  "license": "MIT",
+  "repository": "tsertkov/masynco",
+  "type": "module",
+  "exports": "./masynco.js",
+  "scripts": {
+    "test": "node masynco.test.js"
+  }
+}
