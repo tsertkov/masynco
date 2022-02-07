@@ -11,21 +11,18 @@
   "license": "MIT",
   "repository": "tsertkov/masynco",
   "type": "module",
+  "main": "masynco.cjs",
   "exports": {
-    ".": {
-      "node": {
-        "require": "./masynco.cjs"
-      },
-      "default": "./masynco.js"
-    }
+    "import": "./masynco.js",
+    "require": "./masynco.cjs"
   },
   "scripts": {
-    "test": "npm run test-mjs && npm run test-cjs",
-    "test-mjs": "node masynco.test.js",
+    "test": "npm run test-js && npm run test-cjs",
+    "test-js": "node masynco.test.js",
     "test-cjs": "node masynco.test.cjs",
-    "build": "npm run build-masynco-cjs && npm run build-test-cjs && npm run build-test-mjs",
+    "build": "npm run build-masynco-cjs && npm run build-test-cjs && npm run build-test-js",
     "build-masynco-cjs": "sed 's/^export default /module.exports = /' masynco.js > masynco.cjs",
-    "build-test-mjs": "cat masynco.test-hdr.js masynco.test-body.js > masynco.test.js",
+    "build-test-js": "cat masynco.test-hdr.js masynco.test-body.js > masynco.test.js",
     "build-test-cjs": "cat masynco.test-hdr.cjs masynco.test-body.js > masynco.test.cjs"
   }
 }
