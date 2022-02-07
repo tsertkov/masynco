@@ -68,8 +68,17 @@ Type: `function`
 
 Optionally use limit function for concurrency control. See `p-limit`.
 
+## Releasing npm package
+
+Merging PR with bumped npm version `npm version major|minor|path` will publish npm package and create version tag in git automatically.
+
+```bash
+npm version
+```
+
 ## Why?
 
 Single interface for applying regular and async map function to every item of input iterable and returning new iterable with original keys and mapped values.
 
 " It saves my time, Al
+
