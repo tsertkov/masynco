@@ -73,4 +73,3 @@ Optionally use limit function for concurrency control. See `p-limit`.
 Single interface for applying regular and async map function to every item of input iterable and returning new iterable with original keys and mapped values.
 
 " It saves my time, Al
-
