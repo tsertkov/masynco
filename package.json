@@ -9,7 +9,10 @@
     "limit"
   ],
   "license": "MIT",
-  "repository": "tsertkov/masynco",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsertkov/masynco.git"
+  },
   "type": "module",
   "main": "masynco.cjs",
   "exports": {
