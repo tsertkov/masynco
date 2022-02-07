@@ -1,6 +1,9 @@
 name: NPM
 on:
-  - push
+  push:
+    branches:
+      - 'main'
+      - 'dev/version-tag-automation'
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -13,6 +16,16 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
-      - uses: JS-DevTools/npm-publish@v1
+      - id: publish
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          git config --global user.name 'Github Action'
+          git config --global user.email 'tsertkov@users.noreply.github.com'
+          git tag \
+            -a "v${{ steps.publish.outputs.version }}" \
+            -m "release-v${{ steps.publish.outputs.version }}"
+          git push --tags
+
