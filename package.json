@@ -5,13 +5,27 @@
   "keywords": [
     "async",
     "map",
-    "reduce"
+    "reduce",
+    "limit"
   ],
   "license": "MIT",
   "repository": "tsertkov/masynco",
   "type": "module",
-  "exports": "./masynco.js",
+  "exports": {
+    ".": {
+      "node": {
+        "require": "./masynco.cjs"
+      },
+      "default": "./masynco.js"
+    }
+  },
   "scripts": {
-    "test": "node masynco.test.js"
+    "test": "npm run test-mjs && npm run test-cjs",
+    "test-mjs": "node masynco.test.js",
+    "test-cjs": "node masynco.test.cjs",
+    "build": "npm run build-masynco-cjs && npm run build-test-cjs && npm run build-test-mjs",
+    "build-masynco-cjs": "sed 's/^export default /module.exports = /' masynco.js > masynco.cjs",
+    "build-test-mjs": "cat masynco.test-hdr.js masynco.test-body.js > masynco.test.js",
+    "build-test-cjs": "cat masynco.test-hdr.cjs masynco.test-body.js > masynco.test.cjs"
   }
 }

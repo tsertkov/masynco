@@ -1,2 +1,5 @@
 .github
 *.test.js
+*.test.cjs
+*.test-*.js
+*.test-*.cjs
