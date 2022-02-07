@@ -1,5 +1,5 @@
-import { strict as assert } from 'assert'
-import masynco from './masynco.js'
+
+// NB! This file will be appened to import header selected during build
 
 // differnt types of map functions
 const mapSync = (v) => `processed-${v}`
@@ -82,4 +82,3 @@ async function runTests (testData, limit = null) {
   assert.equal(limitCallCount, expectedLimitCallCount)
   process.stdout.write('OK\n')
 })()
-
