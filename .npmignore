@@ -4,3 +4,4 @@
 *.test.cjs
 *.test-*.js
 *.test-*.cjs
+development.md
