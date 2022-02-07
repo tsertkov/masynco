@@ -16,13 +16,6 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
-      - run: |
-          git config --global user.name 'Github Action'
-          git config --global user.email 'tsertkov@users.noreply.github.com'
-          git tag \
-            -a "v0.0.0-test" \
-            -m "release-v0.0.0-test"
-          git push --tags
       - id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
