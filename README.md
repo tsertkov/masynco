@@ -15,11 +15,11 @@ import masynco from 'masynco'
 ;(async () => {
   // supports async and regular functions
   const fn = async (num) => num + 1
-  
+
   // supports async array mapping
   const a = await masynco([1, 2, 3], fn)
   console.log(a) // [ 2, 3, 4 ]
-  
+
   // supports async object mapping
   const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn)
   console.log(o) // { k1: 'v11', k2: 'v21' }
@@ -48,13 +48,13 @@ import plimit from 'p-limit'
 
 ### async masynco(iterable, fn, limit = null)
 
-Returns new output iterable created by processing each item with `fn` function.
+Returns a new iterable formed by applying a given function to each element of input iterable.
 
 #### iterable
 
 Type: `object`, `array`
 
-Array or object to iterate. For array iterable returned result is also array. Object will be returned for non-array iterables.
+Input Array or Object to process. Function returns array when input is array and object otherwise.
 
 #### fn
 
@@ -66,7 +66,7 @@ Function that is called for every element of input iterable. It receives origina
 
 Type: `function`
 
-Optionally use limit function for concurrency control. See `p-limit`.
+Optional limit function for concurrency control. See `p-limit`.
 
 ## Why?
 
