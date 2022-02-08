@@ -1,4 +1,4 @@
-name: NPM
+name: npm-publish
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment: build
+    environment: npm-publish
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -27,4 +27,3 @@ jobs:
             -a "v${{ steps.publish.outputs.version }}" \
             -m "release-v${{ steps.publish.outputs.version }}"
           git push --tags
-
