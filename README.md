@@ -46,9 +46,9 @@ import plimit from 'p-limit'
 
 ## API
 
-### async masynco(iterable, fn, limit = null)
+### async masynco(input, fn, limit = null)
 
-Returns a new iterable formed by applying a given function to each element of input iterable.
+Returns a new Array or Object formed by applying a given function to each element of input.
 
 #### iterable
 
