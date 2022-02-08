@@ -25,4 +25,3 @@ function processKvFn (fn) {
 function normalizeKvResponse (v, k) {
   return { [ k ] : v }
 }
-
