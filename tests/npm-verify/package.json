@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "node import.mjs && node dynamic-import.js && node require.cjs",
+    "build": "npm run build-require && npm run build-import && npm run build-dynamic-import",
+    "build-require": "sed -e 's/\\.\\.\\/masynco-test\\.cjs/\\.\\.\\/\\.\\.\\/masynco-test.cjs/' -e 's/\\.\\.\\/masynco\\.cjs/masynco/' ../require.cjs > require.cjs",
+    "build-import": "sed -e 's/\\.\\.\\/masynco-test\\.js/\\.\\.\\/\\.\\.\\/masynco-test.js/' -e 's/\\.\\.\\/masynco\\.js/masynco/' ../import.js > import.mjs",
+    "build-dynamic-import": "sed -e 's/\\.\\.\\/masynco-test\\.js/\\.\\.\\/\\.\\.\\/masynco-test.js/' -e 's/\\.\\.\\/masynco\\.js/masynco/' ../dynamic-import.js > dynamic-import.js"
+  },
+  "dependencies": {
+    "masynco": "*"
+  }
+}
