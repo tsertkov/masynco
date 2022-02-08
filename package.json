@@ -15,6 +15,7 @@
   },
   "type": "module",
   "main": "masynco.cjs",
+  "types": "masynco.d.ts",
   "exports": {
     "import": "./masynco.js",
     "require": "./masynco.cjs"
