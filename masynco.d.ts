@@ -1,14 +1,19 @@
 /**
- * Masynco resolves new object or array.
+ * Returns a new Array formed by applying a given function to each element of input array.
+ *
+ * @param input - Input Array to process.
+ * @param fn - Function `(value, index)` that is called for every element of input array. It returns new value that is inserted into output array.
+ * @param limit - Optional limit function for concurrency control.
+ * @returns Promise resolving new Array.
  */
-type MasyncoResult = any[]
+export default function masynco (input: any[], fn: (value: any, key: any) => any, limit?: any): Promise<[]>;
 
 /**
- * Returns a new iterable formed by applying a given function to each element of input iterable.
+ * Returns a new Object formed by applying a given function to each element of input.
  *
- * @param iterable - Input Array or Object to process. Function returns array when input is array and object otherwise.
- * @param fn - Function that is called for every element of input iterable. It receives original `value` and `key` and returns new value that is inserted into output iterable.
+ * @param input - Input Object to process.
+ * @param fn - Function `(value, key)` that is called for every element of input object. It returns new value that is inserted into output object.
  * @param limit - Optional limit function for concurrency control.
- * @returns Promise resolving new Object or Array.
+ * @returns Promise resolving new Object.
  */
-export default function masynco (iterable: Iterable<any> | Object, fn: (value: any, key: any) => any, limit?: any): Promise<MasyncoResult>
+export default function masynco (input: any, fn: (value: any, key: any) => any, limit?: any): Promise<any>;
