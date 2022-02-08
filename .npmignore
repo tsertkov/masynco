@@ -1,8 +1,5 @@
-.github
-.tool-versions
-.editorconfig
-*.test.js
-*.test.cjs
-*.test-*.js
-*.test-*.cjs
-development.md
+*
+.*
+!masynco.js
+!masynco.cjs
+!masynco.d.ts
