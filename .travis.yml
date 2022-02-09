@@ -4,5 +4,5 @@ node_js:
   - node
   - lts/*
 before_script:
-  - npm build
+  - npm run build
 
