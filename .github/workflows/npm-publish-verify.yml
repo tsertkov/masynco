@@ -1,7 +1,7 @@
 name: npm-publish-verify
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 * * * *'
 jobs:
   test:
     name: Node.js ${{ matrix.node-version }}
@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
+          npm run build
           cd tests/npm-verify
           npm install
           npm run build
