@@ -22,8 +22,8 @@
   },
   "scripts": {
     "test": "node tests/dynamic-import.js && node tests/import.js && node tests/require.cjs",
-    "build": "npm run build-masynco-cjs && npm run build-masynco-test-cjs",
-    "build-masynco-cjs": "sed 's/^export default /module.exports = /' masynco.js > masynco.cjs",
-    "build-masynco-test-cjs": "sed 's/^export default /module.exports = /' masynco-test.js > masynco-test.cjs"
+    "build": "npm run build-cjs && npm run build-test-cjs",
+    "build-cjs": "sed 's/^export default /module.exports = /' masynco.js > masynco.cjs",
+    "build-test-cjs": "sed 's/^export default /module.exports = /' masynco-test.js > masynco-test.cjs"
   }
 }
