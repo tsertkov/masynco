@@ -1,9 +1,8 @@
 name: npm-publish-verify
 on:
-  schedule:
-    - cron: '0 * * * *'
+  - workflow_dispatch
 jobs:
-  test:
+  test-npm-package:
     name: Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
@@ -19,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          npm run build
+          npm run build-test-cjs
           cd tests/npm-verify
           npm install
           npm run build
