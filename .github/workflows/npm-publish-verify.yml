@@ -1,5 +1,6 @@
 name: npm-publish-verify
 on:
+  - push
   - workflow_dispatch
 jobs:
   test-npm-package:
