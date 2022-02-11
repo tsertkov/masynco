@@ -1,5 +1,39 @@
 // test masynco
-export default async function masyncoTest (masynco, assert) {
+export default async function masyncoTest ({
+  masynco,
+  logFn = null,
+}) {
+  // process is expected to be defined when logFn in not passed (nodejs env)
+  const log = logFn
+    ? logFn
+    : process.stdout.write.bind(process.stdout)
+
+  // simple assert that works in node and browser
+  const assert = (received, expected) => {
+    const sr = JSON.stringify(received, null, 2)
+    const se = JSON.stringify(expected, null, 2)
+    const eDetails = `received: ${sr}\nexpected: ${se}\n`
+    const eMsg = 'Received value is not the same as expected!'
+    const eFullMsg = `${eMsg}\n${eDetails}`
+    const err = new Error(eMsg)
+
+    if (typeof received !== typeof expected) {
+      log(eFullMsg)
+      throw err
+    }
+
+    if (typeof received !== 'object') {
+      if (received === expected) return
+      log(eFullMsg)
+      throw err
+    }
+
+    if (sr !== se) {
+      log(eFullMsg)
+      throw err
+    }
+  }
+
   // differnt types of map functions
   const mapSync = (v) => `processed-${v}`
   const mapAsync = async (v) => mapSync(v)
@@ -58,25 +92,26 @@ export default async function masyncoTest (masynco, assert) {
         expected,
       ] = testData[testName]
 
-      process.stdout.write(`Should ${testName} ... `)
+      log(`Should ${testName} ... `)
       const results = await Promise.all(mapFns.map(fn => masynco(input, fn, limit)))
-      results.forEach(result => assert.deepEqual(result, expected))
-      process.stdout.write('OK\n')
+      results.forEach(result => assert(result, expected))
+      log('OK\n')
     }
   }
 
-  console.log('Executing masynco tests:')
+  log('Executing masynco tests:\n')
   await runTests(testData)
 
   // test limit
   let limitCallCount = 0
   const limit = (fn) => fn(limitCallCount++)
 
-  console.log('\nExecuting masynco tests with limit:')
+  log('\nExecuting masynco tests with limit:\n')
   await runTests(testData, limit)
 
   const expectedLimitCallCount = 18
-  process.stdout.write(`Limit expected to be called ${expectedLimitCallCount} times ... `)
-  assert.equal(limitCallCount, expectedLimitCallCount)
-  process.stdout.write('OK\n')
+  log(`Limit expected to be called ${expectedLimitCallCount} times ... `)
+  assert(limitCallCount, expectedLimitCallCount)
+  log('OK\n')
 }
+

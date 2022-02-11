@@ -8,5 +8,5 @@ console.log('---')
   const { default: masynco } = await import('../masynco.js')
   const { default: masyncoTest } = await import('../masynco-test.js')
 
-  return masyncoTest(masynco, assert)
+  return masyncoTest({ masynco, assert })
 })()
