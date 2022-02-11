@@ -8,5 +8,5 @@ console.log('Verifying require(masynco)')
 console.log('---')
 
 ;(async () =>
-  await masyncoTest(masynco, assert)
+  masyncoTest({ masynco, assert })
 )()

@@ -8,5 +8,5 @@ console.log('Verifying import masynco')
 console.log('---')
 
 ;(async () =>
-  await masyncoTest(masynco, assert)
+  masyncoTest({ masynco, assert })
 )()
