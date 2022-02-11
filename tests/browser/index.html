@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>masynco browser test runner</title>
+    <style type="text/css">
+      #webconsole {
+        font-family: monospace;
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>masynco browser test runner</h1>
+    <div id="webconsole"></div>
+    <script type="module">
+      import masynco from './masynco.js'
+      import masyncoTest from './masynco-test.js'
+      ;(async () => {
+        const consoleEl = document.getElementById('webconsole')
+        consoleEl.innerHTML += '---\nVerifying import masynco\n---\n\n'
+        masyncoTest({
+          masynco,
+          logFn: (msg) => (consoleEl.innerHTML += msg),
+        })
+      })()
+    </script>
+    <script type="module">
+      import masyncoTest from './masynco-test.js'
+      ;(async () => {
+        const { default: masynco } = await import('./masynco.js')
+        const consoleEl = document.getElementById('webconsole')
+        consoleEl.innerHTML += '\n---\nVerifying await import(masynco)\n---\n\n'
+        masyncoTest({
+          masynco,
+          logFn: (msg) => (consoleEl.innerHTML += msg),
+        })
+      })()
+    </script>
+  </body>
+</html>

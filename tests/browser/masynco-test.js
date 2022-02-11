@@ -1,0 +1,1 @@
+../../masynco-test.js
