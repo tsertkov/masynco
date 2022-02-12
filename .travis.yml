@@ -1,14 +1,14 @@
 language: node_js
-node_js:
-  - 12
-  - lts/*
-  - node
+before_script:
+  - npm run build
 jobs:
   include:
     - name: npm test
-      before_script:
-        - npm run build
-  exclude:
+      node_js: 12
+    - name: npm test
+      node_js: lts/*
+    - name: npm test
+      node_js: node
     - name: npm run test-browser
       node_js: node
       script:
