@@ -22,8 +22,13 @@
   },
   "scripts": {
     "test": "node tests/dynamic-import.js && node tests/import.js && node tests/require.cjs",
+    "test-browser": "node tests/browser/browser-test-runner.js",
     "build": "npm run build-cjs && npm run build-test-cjs",
     "build-cjs": "sed 's/^export default /module.exports = /' masynco.js > masynco.cjs",
     "build-test-cjs": "sed 's/^export default /module.exports = /' masynco-test.js > masynco-test.cjs"
+  },
+  "devDependencies": {
+    "exec-sh": "^0.4.0",
+    "serve": "^13.0.2"
   }
 }

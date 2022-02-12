@@ -1,6 +1,8 @@
 name: npm-publish-verify
 on:
-  - workflow_dispatch
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * *'
 jobs:
   test-npm-package:
     name: Node.js ${{ matrix.node-version }}
