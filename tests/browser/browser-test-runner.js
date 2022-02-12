@@ -9,7 +9,7 @@ const _dirname = dirname(fileURLToPath(import.meta.url))
 
 const defaultChromePath = process.platform === 'darwin'
   ? '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-  : '/usr/bin/chrome'
+  : 'chrome'
 
 const {
   CHROME_PATH: chromePath = defaultChromePath,

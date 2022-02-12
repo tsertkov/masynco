@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - run: CHROME_PATH=chrome npm run test-browser
+      - run: npm run test-browser
   test-node:
     name: Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
