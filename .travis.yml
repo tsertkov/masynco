@@ -8,6 +8,7 @@ jobs:
     - name: npm test
       before_script:
         - npm run build
+  exclude:
     - name: npm run test-browser
       node_js: node
       script:
