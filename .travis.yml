@@ -1,14 +1,19 @@
-language: node_js
-node_js:
-  - 12
-  - node
-  - lts/*
-before_script:
-  - export DISPLAY=:99.0
-  - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
-  - npm run build
-script:
-  - npm test
-  - npm run test-browser
-addons:
-  chrome: stable
+jobs:
+  include:
+    - language: node_js
+      node_js:
+        - 12
+        - node
+        - lts/*
+      before_script:
+        - npm run build
+    - language: node_js
+      node_js:
+        - node
+      before_script:
+        - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
+      script:
+        - npm run test-browser
+      addons:
+        chrome: stable
+
