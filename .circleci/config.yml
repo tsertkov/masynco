@@ -6,13 +6,11 @@ jobs:
   test:
     executor:
       name: node/default
-      tag: '16.10'
+      tag: '16'
     steps:
       - checkout
-      - run:
-          command: |
-            npm run build
-            npm run test
+      - run: npm run build
+      - run: npm test
   test-browser:
     executor: node/default
     steps:
