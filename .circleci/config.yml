@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5.00
+  browser-tools: circleci/browser-tools@1.2.4
 jobs:
   test:
     executor:
@@ -10,9 +11,19 @@ jobs:
       - checkout
       - run:
           command: |
-            npm run build 
+            npm run build
             npm run test
+  test-browser:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          command: |
+            npm install
+            CHROME_PATH="google-chrome" npm run test-browser
 workflows:
   test:
     jobs:
       - test
+      - test-browser
