@@ -1,10 +1,8 @@
 # masynco
 
-> massive async operations
+> massive async operations powered by [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
 
-Minimal async Map/Reduce helper with pluggable limit to handle massive amount of asynchronous operations.
-
-![main ci status](https://github.com/tsertkov/masynco/actions/workflows/main.yml/badge.svg?branch=main)
+Minimal async map/reduce helper with pluggable limit to handle massive amount of asynchronous operations in node and browser.
 
 ## Usage
 
@@ -42,6 +40,20 @@ import plimit from 'p-limit'
   const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn, plimit(3))
   console.log(o) // { k1: 'v11', k2: 'v21' }
 })()
+```
+
+Use in browser as JavaScript module:
+
+```html
+<script type="module">
+  import masynco from './masynco.js'
+
+  ;(async () => {
+    const fn = async (num) => num + 1
+    const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn)
+    console.log(o) // { k1: 'v11', k2: 'v21' }
+  })()
+</script>
 ```
 
 ## API
