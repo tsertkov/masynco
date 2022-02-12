@@ -26,8 +26,4 @@ workflows:
     jobs:
       - test
       - test-browser
-      - node/run
-          npm-run:
-            - build
-            - test
 
