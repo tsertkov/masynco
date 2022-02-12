@@ -16,8 +16,7 @@ jobs:
     steps:
       - checkout
       - browser-tools/install-chrome
-      - node/install-packages:
-          override-ci-command: npm install
+      - node/install-packages
       - run: CHROME_PATH="google-chrome" npm run test-browser
 workflows:
   test:
