@@ -6,7 +6,6 @@ node_js:
 before_script:
   - export DISPLAY=:99.0
   - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
-  - sh -e /etc/init.d/xvfb start
   - npm run build
 script:
   - npm test
