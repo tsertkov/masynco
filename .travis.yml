@@ -3,11 +3,11 @@ before_script:
   - npm run build
 jobs:
   include:
-    - name: npm test
+    - name: [Node 12] npm test
       node_js: 12
-    - name: npm test
+    - name: [Node lts] npm test
       node_js: lts/*
-    - name: npm test
+    - name: [Node latest] npm test
       node_js: node
     - name: npm run test-browser
       node_js: node
