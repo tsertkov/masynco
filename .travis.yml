@@ -3,13 +3,15 @@ node_js:
   - node
 jobs:
   include:
-    - node_js:
+    - name: npm test
+      node_js:
         - 12
         - node
         - lts/*
       before_script:
         - npm run build
-    - script:
+    - name: npm run test-browser
+      script:
         - CHROME_PATH="google-chrome-stable" npm run test-browser
       addons:
         chrome: stable
