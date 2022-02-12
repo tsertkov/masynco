@@ -18,6 +18,7 @@ jobs:
       name: node/default
     steps:
       - checkout
+      - browser-tools/install-chrome
       - run:
           command: |
             npm install
