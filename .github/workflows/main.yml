@@ -3,7 +3,17 @@ on:
   - push
   - pull_request
 jobs:
-  test:
+  test-browser:
+    name: Chrome
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm test-browser
+  test-node:
     name: Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
