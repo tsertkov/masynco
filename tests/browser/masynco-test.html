@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>masynco browser test runner</title>
+    <style type="text/css">
+      #webconsole {
+        font-family: monospace;
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>masynco browser test runner</h1>
+    <div id="testlog"></div>
+    <div id="testresult"></div>
+    <script type="module">
+      import masynco from './masynco.js'
+      import masyncoTest from './masynco-test.js'
+      ;(async () => {
+        const logEl = document.getElementById('testlog')
+        const testResult = document.getElementById('testresult')
+        const logFn = (msg) => (logEl.innerHTML += msg)
+        logFn('<!-- start test log -->')
+        logFn('\n---\nSTART VERIFY: import masynco\n---\n\n')
+        testResult.innerHTML = 'FAILURE'
+        await masyncoTest({ masynco, logFn })
+        testResult.innerHTML = 'SUCCESS'
+        logFn('\n---\nSUCCESS VERIFY: import masynco\n---\n\n')
+      })()
+    </script>
+    <script type="module">
+      import masyncoTest from './masynco-test.js'
+      ;(async () => {
+        const { default: masynco } = await import('./masynco.js')
+        const logEl = document.getElementById('testlog')
+        const testResult = document.getElementById('testresult')
+        const logFn = (msg) => (logEl.innerHTML += msg)
+        logFn('\n---\nSTART VERIFY: await import(masynco)\n---\n\n')
+        testResult.innerHTML = 'FAILURE'
+        await masyncoTest({ masynco, logFn })
+        testResult.innerHTML = 'SUCCESS'
+        logFn('\n---\nSUCCESS VERIFY: await import(masynco)\n---\n\n')
+        logFn('<!-- end test log -->')
+      })()
+    </script>
+  </body>
+</html>
