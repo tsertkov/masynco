@@ -1,16 +1,15 @@
 language: node_js
 node_js:
+  - 12
+  - lts/*
   - node
 jobs:
   include:
     - name: npm test
-      node_js:
-        - 12
-        - node
-        - lts/*
       before_script:
         - npm run build
     - name: npm run test-browser
+      node_js: node
       script:
         - CHROME_PATH="google-chrome-stable" npm run test-browser
       addons:
