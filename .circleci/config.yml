@@ -14,17 +14,20 @@ jobs:
             npm run build
             npm run test
   test-browser:
-    executor:
-      name: node/default
+    executor: node/default
     steps:
       - checkout
       - browser-tools/install-chrome
-      - run:
-          command: |
-            npm install
-            CHROME_PATH="google-chrome" npm run test-browser
+      - node/install-packages:
+          override-ci-command: npm install
+      - run: CHROME_PATH="google-chrome" npm run test-browser
 workflows:
   test:
     jobs:
       - test
       - test-browser
+      - node/run
+          npm-run:
+            - build
+            - test
+
