@@ -10,8 +10,6 @@ jobs:
     - language: node_js
       node_js:
         - node
-      before_script:
-        - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
       script:
         - npm run test-browser
       addons:
