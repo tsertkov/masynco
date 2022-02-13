@@ -14,5 +14,13 @@
         {{ content }}
       </section>
     </div>
+    <script src="https://embed.runkit.com"></script>
+    <script>
+      const el = document.querySelector('code')
+      RunKit.createNotebook({
+        element: el,
+        source: el.innerHTML,
+      })
+    </script>
   </body>
 </html>
