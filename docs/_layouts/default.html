@@ -16,8 +16,10 @@
     </div>
     <script src="https://embed.runkit.com"></script>
     <script>
+      const el = document.querySelector('.language-javascript')
+      const codeEl = el.querySelector('.highlight')
       const notebook = RunKit.createNotebook({
-        element: document.querySelector('.language-javascript'),
+        element: el,
         gutterStyle: 'none',
         tabSize: 2,
         title: 'masynco-demo',
@@ -43,9 +45,9 @@ const masynco = require('masynco')
   console.log(o1) // { k1: 'v11', k2: 'v21' }
 })()
 `
-        notebook.onLoad(embed =>
-          el.querySelector('.highlight').remove()
-        )
+        notebook.onLoad(embed => {
+          codeEl.remove()
+        })
       })
     </script>
   </body>
