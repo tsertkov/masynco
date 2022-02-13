@@ -18,7 +18,7 @@
     <script>
       RunKit.createNotebook({
         element: document.querySelector('code'),
-        source: "
+        source: `
 const masynco = require('masynco')
 // import masynco from 'masynco' // cjs and mjs are supported
 
@@ -39,7 +39,7 @@ const masynco = require('masynco')
   const o1 = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fnSync)
   console.log(o1) // { k1: 'v11', k2: 'v21' }
 })()
-"
+`
       })
     </script>
   </body>
