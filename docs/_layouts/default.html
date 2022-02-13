@@ -18,7 +18,8 @@
     <script>
       const el = document.querySelector('.language-javascript')
       const codeEl = el.querySelector('.highlight')
-      const notebook = RunKit.createNotebook({
+
+      RunKit.createNotebook({
         element: el,
         gutterStyle: 'none',
         tabSize: 2,
@@ -45,10 +46,10 @@ const masynco = require('masynco')
   console.log(o1) // { k1: 'v11', k2: 'v21' }
 })()
 `
-        notebook.onLoad(embed => {
-          codeEl.remove()
-        })
       })
+      .load(() =>
+        codeEl.remove()
+      )
     </script>
   </body>
 </html>
