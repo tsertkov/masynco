@@ -21,7 +21,7 @@
     "require": "./masynco.cjs"
   },
   "scripts": {
-    "test": "npx c8 --check-coverage --lines 100 npm run test-node",
+    "test": "c8 --check-coverage --lines 100 npm run test-node",
     "test-node": "node tests/dynamic-import.js && node tests/import.js && node tests/require.cjs",
     "test-browser": "node tests/browser/browser-test-runner.js",
     "build": "npm run build-cjs && npm run build-test-cjs",
