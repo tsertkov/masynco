@@ -24,6 +24,7 @@
         gutterStyle: 'none',
         tabSize: 2,
         title: 'masynco-demo',
+        onLoad: () => codeEl.remove(),
         source: `
 const masynco = require('masynco')
 // import masynco from 'masynco' // cjs and mjs are supported
@@ -47,9 +48,6 @@ const masynco = require('masynco')
 })()
 `
       })
-      .onLoad(() =>
-        codeEl.remove()
-      )
     </script>
   </body>
 </html>
