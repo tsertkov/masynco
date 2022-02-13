@@ -1,3 +1,6 @@
+---
+layout: landing
+---
 # masynco
 
 > massive async operations powered by [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+{% seo %}
+  </head>
+  <body>
+    <div class="container">
+      <section id="main_content">
+        {{ content }}
+      </section>
+    </div>
+    <script src="https://embed.runkit.com"></script>
+    <script>
+      const el = document.querySelector('.language-javascript')
+      const codeEl = el.querySelector('.highlight')
+
+      RunKit.createNotebook({
+        element: el,
+        gutterStyle: 'none',
+        tabSize: 2,
+        title: 'masynco-demo',
+        onLoad: () => codeEl.remove(),
+        source: `
+const masynco = require('masynco')
+// import masynco from 'masynco' // cjs and mjs are supported
+
+;(async () => {
+  // supports async and regular functions
+  const fn = async (num) => num + 1
+
+  // supports async array mapping
+  const a = await masynco([1, 2, 3], fn)
+  console.log(a) // [ 2, 3, 4 ]
+
+  // supports async object mapping
+  const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn)
+  console.log(o) // { k1: 'v11', k2: 'v21' }
+
+  // supports regular (non-async) functions also
+  const fnSync = (num) => num + 1
+  const o1 = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fnSync)
+  console.log(o1) // { k1: 'v11', k2: 'v21' }
+})()
+`
+      })
+    </script>
+  </body>
+</html>
