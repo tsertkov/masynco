@@ -1,37 +1,87 @@
-## Welcome to GitHub Pages
+# masynco
 
-You can use the [editor on GitHub](https://github.com/tsertkov/masynco/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+> massive async operations powered by [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Minimal async map/reduce helper with pluggable limit to handle massive amount of asynchronous operations in node and browser.
 
-### Markdown
+## Usage
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+```javascript
+// const masynco = require('masynco') // cjs and mjs are supported
+import masynco from 'masynco'
 
-```markdown
-Syntax highlighted code block
+;(async () => {
+  // supports async and regular functions
+  const fn = async (num) => num + 1
 
-# Header 1
-## Header 2
-### Header 3
+  // supports async array mapping
+  const a = await masynco([1, 2, 3], fn)
+  console.log(a) // [ 2, 3, 4 ]
 
-- Bulleted
-- List
+  // supports async object mapping
+  const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn)
+  console.log(o) // { k1: 'v11', k2: 'v21' }
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+  // supports regular (non-async) functions also
+  const fnSync = (num) => num + 1
+  const o1 = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fnSync)
+  console.log(o1) // { k1: 'v11', k2: 'v21' }
+})()
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Optionally `limit` function can be passed for concurrency control:
 
-### Jekyll Themes
+```javascript
+import masynco from 'masynco'
+import plimit from 'p-limit'
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tsertkov/masynco/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+;(async () => {
+  const fn = async (num) => num + 1
+  const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn, plimit(3))
+  console.log(o) // { k1: 'v11', k2: 'v21' }
+})()
+```
 
-### Support or Contact
+Use in browser as JavaScript module:
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```html
+<script type="module">
+  import masynco from './masynco.js'
+
+  ;(async () => {
+    const fn = async (num) => num + 1
+    const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn)
+    console.log(o) // { k1: 'v11', k2: 'v21' }
+  })()
+</script>
+```
+
+## API
+
+### async masynco(input, fn, limit = null)
+
+Returns a new Array or Object formed by applying a given function to each element of input.
+
+#### iterable
+
+Type: `object`, `array`
+
+Input Array or Object to process. Function returns array when input is array and object otherwise.
+
+#### fn
+
+Type: `function (value, key)`
+
+Function that is called for every element of input iterable. It receives original `value` and `key` and returns new value that is inserted into output iterable.
+
+#### limit
+
+Type: `function`
+
+Optional limit function for concurrency control. See `p-limit`.
+
+## Why?
+
+Single interface for applying regular and async map function to every item of input iterable and returning new iterable with original keys and mapped values.
+
+" It saves my time, Al
