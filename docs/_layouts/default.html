@@ -43,6 +43,9 @@ const masynco = require('masynco')
   console.log(o1) // { k1: 'v11', k2: 'v21' }
 })()
 `
+        notebook.onLoad(embed =>
+          el.querySelector('.highlight').remove()
+        )
       })
     </script>
   </body>
