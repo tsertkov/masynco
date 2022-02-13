@@ -16,10 +16,30 @@
     </div>
     <script src="https://embed.runkit.com"></script>
     <script>
-      const el = document.querySelector('code')
       RunKit.createNotebook({
-        element: el,
-        source: el.innerHTML,
+        element: document.querySelector('code'),
+        source: "
+const masynco = require('masynco')
+// import masynco from 'masynco' // cjs and mjs are supported
+
+;(async () => {
+  // supports async and regular functions
+  const fn = async (num) => num + 1
+
+  // supports async array mapping
+  const a = await masynco([1, 2, 3], fn)
+  console.log(a) // [ 2, 3, 4 ]
+
+  // supports async object mapping
+  const o = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fn)
+  console.log(o) // { k1: 'v11', k2: 'v21' }
+
+  // supports regular (non-async) functions also
+  const fnSync = (num) => num + 1
+  const o1 = await masynco({ 'k1': 'v1', 'k2': 'v2' }, fnSync)
+  console.log(o1) // { k1: 'v11', k2: 'v21' }
+})()
+"
       })
     </script>
   </body>
