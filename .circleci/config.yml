@@ -9,6 +9,7 @@ jobs:
       tag: '16.10'
     steps:
       - checkout
+      - node/install-packages
       - run: npm run build
       - run: npm test
   test-browser:
