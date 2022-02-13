@@ -16,8 +16,11 @@
     </div>
     <script src="https://embed.runkit.com"></script>
     <script>
-      RunKit.createNotebook({
-        element: document.querySelector('code'),
+      const notebook = RunKit.createNotebook({
+        element: document.querySelector('.language-javascript'),
+        gutterStyle: 'none',
+        tabSize: 2,
+        title: 'masynco-demo',
         source: `
 const masynco = require('masynco')
 // import masynco from 'masynco' // cjs and mjs are supported
