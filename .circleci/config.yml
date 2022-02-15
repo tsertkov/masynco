@@ -22,6 +22,12 @@ jobs:
 workflows:
   test:
     jobs:
-      - test
-      - test-browser
+      - test:
+          filters:
+            branches:
+              ignore: gh-pages
+      - test-browser:
+          filters:
+            branches:
+              ignore: gh-pages
 
