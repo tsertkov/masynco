@@ -62,7 +62,11 @@ const masynco = require('masynco')
           gutterStyle: 'none',
           tabSize: 2,
           title: 'masynco-demo',
-          onLoad: () => codeEl.remove(),
+          onLoad: () => {
+            // avoid overflowing container
+            el.style.overflow = 'hidden'
+            codeEl.remove()
+          },
           source,
         })
       })
