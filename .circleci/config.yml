@@ -1,3 +1,10 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/base
+    steps:
+      - checkout
 workflows:
   build-workflow:
     jobs:
@@ -5,3 +12,4 @@ workflows:
           filters:
             branches:
               ignore: /.*/
+
