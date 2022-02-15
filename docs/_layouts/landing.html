@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <style>
+      .runkitBtn {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        padding: 10px;
+        border: 1px solid #475e1b;
+        border-radius: 5px;
+        background-color: #000;
+        color: #b5e853;
+        cursor: pointer;
+      }
+    </style>
     {% include head-custom.html %}
 {% seo %}
   </head>
@@ -44,15 +57,8 @@ const masynco = require('masynco')
 
       // runkit button
       const runkitBtn = document.createElement('button')
+      runkitBtn.className = 'runkitBtn'
       runkitBtn.innerHTML = '▶ RunKit'
-      runkitBtn.style.position = 'absolute'
-      runkitBtn.style.top = '3px'
-      runkitBtn.style.right = '3px'
-      runkitBtn.style.padding = '10px'
-      runkitBtn.style.border = '1px solid #475e1b'
-      runkitBtn.style.borderRadius = '5px'
-      runkitBtn.style.backgroundColor = '#000'
-      runkitBtn.style.color = '#b5e853'
       codeEl.style.position = 'relative'
       codeEl.insertBefore(runkitBtn, codeEl.firstChild)
 
